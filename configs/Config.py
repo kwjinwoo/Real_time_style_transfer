@@ -9,6 +9,9 @@ class Configs:
                                   "block2_conv2",
                                   "block3_conv3",
                                   "block4_conv3"]
-        self.content_weights = 1e0
-        self.style_weights = 1e5
+        self.content_weights = 1e-1
+        self.style_weights = 1e-6
         self.tv_weights = 1e-6
+        self.batch_size = 4
+        self.num_epochs = 2
+        self.lr = 1e-3

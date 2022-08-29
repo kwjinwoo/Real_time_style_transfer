@@ -1,5 +1,5 @@
 import tensorflow as tf
-from keras.layers import Input, Conv2D, BatchNormalization, Activation, Conv2DTranspose, Lambda, Cropping2D, Layer
+from keras.layers import Input, Conv2D, BatchNormalization, Conv2DTranspose, Lambda, Cropping2D, Layer, Activation
 from keras.models import Model, Sequential
 from configs import cfg
 
@@ -56,9 +56,9 @@ def build_net():
     x = ResidualBlock()(x)
     x = ResidualBlock()(x)
     x = ResidualBlock()(x)
-    x = build_upsample_block(64, 3, 2, "relu", "upsample_conv1")(x)
-    x = build_upsample_block(32, 3, 2, "relu", "upsample_conv2")(x)
-    out = build_conv_block(3, 9, 1, "tanh", "out_conv")(x)
+    x = build_upsample_block(64, 3, 2, "upsample_conv1")(x)
+    x = build_upsample_block(32, 3, 2, "upsample_conv2")(x)
+    out = build_conv_block(3, 9, 1, "sigmoid", "out_conv")(x)
 
     return Model(inputs, out)
 
@@ -73,5 +73,5 @@ def build_loss_net():
 
 
 if __name__ == "__main__":
-    model = build_loss_net()
+    model = tf.keras.applications.VGG16(include_top=False, weights="imagenet")
     print(model.summary())
