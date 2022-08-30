@@ -45,7 +45,7 @@ class ResidualBlock(Layer):
 
 
 def build_net():
-    inputs = Input(shape=(256, 256, 3))
+    inputs = Input(shape=(None, None, 3))
     pad_inputs = Lambda(lambda img: tf.pad(img, [[0, 0], [40, 40], [40, 40], [0, 0]], mode="REFLECT")
                         , name="reflection_padding")(inputs)
     x = build_conv_block(32, 9, 1, "relu", "input_conv1")(pad_inputs)

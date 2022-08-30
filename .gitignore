@@ -157,3 +157,5 @@ Untitled2.ipynb
 ckpt/
 models/
 .idea/Real_time_style_transfer.iml
+test/
+result/

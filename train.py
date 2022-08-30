@@ -25,7 +25,7 @@ if __name__ == "__main__":
     ds = get_dataset(dataset_img_list)
     optimizer = tf.keras.optimizers.Adam(learning_rate=cfg.lr)
 
-    style_img = img_load(style_img_path)
+    style_img = style_img_load(style_img_path)
     pre_style = vgg_preprocessing(style_img)
     style_feature = loss_net(pre_style)
     for epoch in range(1, cfg.num_epochs + 1):
