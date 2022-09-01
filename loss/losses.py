@@ -6,11 +6,7 @@ __all__ = ["content_loss", "style_loss", "variants_loss"]
 
 def content_loss(target_feature, pred_feature):
     feature_shape = tf.shape(pred_feature)
-    batch_size = feature_shape[0]
     scale_factor = tf.cast(feature_shape[1] * feature_shape[2] * feature_shape[3], dtype=tf.float32)
-
-    # target_feature = tf.reshape(target_feature, shape=(batch_size, -1))
-    # pred_feature = tf.reshape(pred_feature, shape=(batch_size, -1))
     return tf.reduce_sum(tf.square(pred_feature - target_feature), axis=[1, 2, 3]) / scale_factor
 
 
